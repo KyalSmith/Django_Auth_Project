@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block Title_Block %}
+Registration
+{% endblock %}
+
+
+{% block Body_Block %}
+
+    <div class="jumbotron">
+
+        {% if  registered %}
+
+        <h1>Thank you for registering!</h1>
+
+        {% else %}
+
+            <h1>Register Here:</h1>
+            <h3>Fill out the form:</h3>
+            <br/>
+            <br/>
+            <br/>
+
+            <form method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                {{user_form.as_p}}
+                {{profile_form.as_p}}
+                <br>
+                <br>
+                <input type="submit" class="btn btn-primary" name="" value="Register">
+
+            </form>
+
+        {% endif %}
+    </div>
+
+
+{% endblock %}

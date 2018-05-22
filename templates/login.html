@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block Title_Block %}
+Login
+{% endblock %}
+
+
+{% block Body_Block %}
+
+    {% if Logged_In and not Bad_User %}
+
+
+        <div class="jumbotron">
+
+            <h1>You are now Logged in!</h1>
+
+        </div>
+
+
+    {% elif not Bad_User %}
+
+
+        <div class = "jumbotron" style="text-align:center">
+
+            <h3>Please Login:</h3><br/><br/>
+
+            <form actions="{% url 'User:user_login' %}" method="post">
+
+                {% csrf_token %}
+
+                <label for="username">Username:</label>
+                <input type="text" name="username" value="" placeholder="Enter Username Here"><br/><br/>
+
+                <label for="password">Passowrd:</label>
+                <input type="password" name="password" placeholder="Enter Password Here"><br/><br/>
+
+                <input type="submit" value="Login">
+
+
+
+
+            </form>
+
+        </div>
+
+    {% elif Bad_User %}
+
+        <div class = "jumbotron">
+
+            <form actions="{% url 'User:user_login' %}" method="post">
+
+                {% csrf_token %}
+
+                <p>Incorrect Username or Password!</p>
+
+                <label for="username">Username:</label>
+                <input type="text" name="username" value="" placeholder="Enter Username Here"><br/><br/>
+
+                <label for="password">Passowrd:</label>
+                <input type="password" name="password" placeholder="Enter Password Here"><br/><br/>
+
+                <input type="submit" value="Login">
+
+
+
+
+            </form>
+
+        </div>
+
+
+
+
+
+    {% endif %}
+
+
+
+{% endblock %}
